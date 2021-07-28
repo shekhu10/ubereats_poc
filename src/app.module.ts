@@ -5,8 +5,7 @@ import { RestaurantsModule } from './restaurants/restaurants.module';
 import { TypeOrmModule } from "@nestjs/typeorm"
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
-
-console.log(Joi);
+import { Restaurant } from './restaurants/entities/restaurant.entity';
 
 @Module({
   imports: [
@@ -41,10 +40,13 @@ console.log(Joi);
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      synchronize: true,
-      logging: true
+      synchronize: process.env.NODE_ENV !== 'prod',
+      logging: true,
+      entities: [Restaurant]
     }),
   ],
+  // synchronize = true means that it is going to migrate schema from Typeorm entity to DB automatically
+  // we do not want this option to be true in prod as we do not want automatic sync
   controllers: [],
   providers: [],
 })

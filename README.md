@@ -55,3 +55,32 @@ joi is used for validation environment variables
 joi is not a typescript module so the importing way is different as that in of typescript
   import * as Joi from 'joi';
   if we do import Joi from 'joi'; this is wrong nothing gets imported. in this case console.log(Joi) in undefined.
+
+## Day 3
+
+@entity() decorator will make type orm to save entity in our database
+
+
+We are going to use data mapper to connect with database. i.e way to interact with entity
+there are 2 ways - datamapper and active record. data mapper is for big apps and active record is for small apps.
+data mapper gives maintainability. and active record is simpler to use as compared to datamapper.
+We are going to use datamapper.
+because nestjs already has repository and we can extend repository in test. and we can mock the repository for testing.
+
+now we are going to import repository in our restaurant module as restaurants need to connect with our database.
+we are going to use mapped types (from nestjs documentation)
+
+
+
+give input
+
+mutation{
+  createRestaurant(input: {
+    name: "niswdc",
+    address: "afga",
+    isVegan: "false",
+    ownerName: "sgre",
+    categoryName: "sdge"
+  }
+  )
+}
